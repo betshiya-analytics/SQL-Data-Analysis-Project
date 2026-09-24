@@ -64,3 +64,16 @@ FROM departments d
 LEFT JOIN employees e
 ON d.department = e.department
 GROUP BY d.department, d.manager;
+-- 14. Departments with more than 2 employees
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 2;
+
+-- 15. Rank employees by salary
+SELECT
+    name,
+    department,
+    salary,
+    RANK() OVER (ORDER BY salary DESC) AS salary_rank
+FROM employees;

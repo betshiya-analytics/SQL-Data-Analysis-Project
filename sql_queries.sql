@@ -46,3 +46,21 @@ ORDER BY salary DESC;
 SELECT *
 FROM employees
 WHERE performance_score >= 80;
+-- 11. INNER JOIN employees with departments
+SELECT e.name, e.department, d.manager
+FROM employees e
+INNER JOIN departments d
+ON e.department = d.department;
+
+-- 12. LEFT JOIN employees with departments
+SELECT e.name, e.department, d.manager
+FROM employees e
+LEFT JOIN departments d
+ON e.department = d.department;
+
+-- 13. Count employees by department with manager
+SELECT d.department, d.manager, COUNT(e.employee_id) AS employee_count
+FROM departments d
+LEFT JOIN employees e
+ON d.department = e.department
+GROUP BY d.department, d.manager;
